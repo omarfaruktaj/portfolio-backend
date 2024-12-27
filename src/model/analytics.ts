@@ -2,24 +2,30 @@ import mongoose from 'mongoose';
 
 const analyticsSchema = new mongoose.Schema(
   {
-    page_name: {
+    page: {
       type: String,
-      required: [true, 'Page name is required'],
+      required: true,
       trim: true,
     },
     views: {
       type: Number,
-      required: [true, 'Number of views is required'],
       default: 0,
     },
-    interactions: {
+    uniqueVisitors: {
       type: Number,
-      required: [true, 'Number of interactions is required'],
       default: 0,
     },
-    last_updated: {
-      type: Date,
-      default: Date.now,
+    totalClicks: {
+      type: Number,
+      default: 0,
+    },
+    engagementRate: {
+      type: Number,
+      default: 0,
+    },
+    formSubmissions: {
+      type: Number,
+      default: 0,
     },
   },
   { timestamps: true },

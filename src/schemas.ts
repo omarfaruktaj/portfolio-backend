@@ -55,16 +55,27 @@ const testimonialSchema = z.object({
 });
 
 const analyticsSchema = z.object({
-  page_name: z.string().min(1, { message: 'Page name is required' }),
+  page: z.string().min(1, { message: 'Page name is required' }),
   views: z
     .number()
-    .nonnegative({ message: 'Views must be a non-negative number' })
-    .default(0),
-  interactions: z
+    .min(0, { message: 'Views must be a non-negative number' })
+    .optional(),
+  uniqueVisitors: z
     .number()
-    .nonnegative({ message: 'Interactions must be a non-negative number' })
-    .default(0),
-  last_updated: z.date().optional().default(new Date()),
+    .min(0, { message: 'Unique Visitors must be a non-negative number' })
+    .optional(),
+  totalClicks: z
+    .number()
+    .min(0, { message: 'Total Clicks must be a non-negative number' })
+    .optional(),
+  engagementRate: z
+    .number()
+    .min(0, { message: 'Engagement rate must be a non-negative number' })
+    .optional(),
+  formSubmissions: z
+    .number()
+    .min(0, { message: 'Form submissions must be a non-negative number' })
+    .optional(),
 });
 
 const contactFormSchema = z.object({
